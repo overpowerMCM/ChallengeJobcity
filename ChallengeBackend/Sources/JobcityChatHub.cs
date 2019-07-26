@@ -10,7 +10,8 @@ namespace ChallengeBackend.Sources
     {
         public void ProcessMessage(string msg)
         {
-            string userName = HttpContext.Current.User.Identity.Name;
+            //string userName = HttpContext.Current.User.Identity.Name;
+            string userName = "my username";
             string sendMessage = string.Format("{0}: {1}", userName, msg);
             Clients.All.SendMessage(sendMessage);    
         }

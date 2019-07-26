@@ -40,14 +40,34 @@
     <script src="/signalr/hubs"></script>
 
     <script type="text/javascript">
-
-        $(function () {
+        $(function (){
             var connectionHub = $.connection.jobcityChatHub;
 
-            connectionHub.client.processMessage = function (message) {
-
+            // funtion to retrieve messages from other clients
+            connectionHub.client.sendMessage = function (message)
+            {
+                $("#chatMessages").append( "<li>" + message + "</li>");
             };
+
+            // if connection was successfull add funcionality to send button
+            $.connection.hub.start().done(
+                function ()
+                {
+                    $("#btnSend").click(
+                        function ()
+                        {
+                            var message = $("#inputMessage").val();
+                            connectionHub.server.processMessage(message);
+                        }
+                    );
+                }
+            );
+
         })
+
+
+
+
 
     </script>
 }
