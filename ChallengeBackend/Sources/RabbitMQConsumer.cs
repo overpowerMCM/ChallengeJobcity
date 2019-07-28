@@ -8,6 +8,9 @@ using System.Web;
 
 namespace ChallengeBackend.Sources
 {
+    /// <summary>
+    /// RabbitMQ consumer 
+    /// </summary>
     public class RabbitMQConsumer
     {
 
@@ -16,6 +19,10 @@ namespace ChallengeBackend.Sources
         private IModel _channel;
         ConnectionFactory connectionFactory;
         IConnection _connection;
+        /// <summary>
+        /// consumer constructor
+        /// </summary>
+        /// <param name="queue">the listening queue</param>
         public RabbitMQConsumer(string queue)
         {
             connectionFactory = new ConnectionFactory

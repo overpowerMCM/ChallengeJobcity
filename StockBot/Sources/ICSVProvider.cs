@@ -6,8 +6,16 @@ using System.Web;
 
 namespace StockBot.Sources
 {
+    /// <summary>
+    /// CSV data Provider interface
+    /// </summary>
     public interface ICSVProvider
     {
+        /// <summary>
+        /// Retrieves the byte array of a given stock code.
+        /// </summary>
+        /// <param name="code">the stock code</param>
+        /// <returns></returns>
         Task<byte[]> GetStockData(string code);
     }
 }

@@ -7,6 +7,9 @@ using System.Web;
 
 namespace StockBot.Sources
 {
+    /// <summary>
+    /// Stooq stock provider: https://stooq.com
+    /// </summary>
     public class StooqCSVProvider : ICSVProvider
     {
         public async Task<byte[]> GetStockData(string stockCode)

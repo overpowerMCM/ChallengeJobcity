@@ -10,6 +10,9 @@ using System.Web;
 
 namespace ChallengeBackend.Sources
 {
+    /// <summary>
+    /// sends https post messages to an url
+    /// </summary>
     public class MessageSender
     {
         private static MessageSender _instance;
@@ -26,6 +29,11 @@ namespace ChallengeBackend.Sources
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("text/plain"));
         }
 
+        /// <summary>
+        /// Post a message to url
+        /// </summary>
+        /// <param name="url">the url</param>
+        /// <param name="message">the post message</param>
         public void Post(string url, string message)
         {
             var content = new StringContent(message, Encoding.UTF8, "text/plain");

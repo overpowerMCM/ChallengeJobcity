@@ -10,6 +10,9 @@ using RabbitMQ.Client.Events;
 
 namespace ChallengeBackend.Sources
 {
+    /// <summary>
+    /// custom SignalR Chat hub 
+    /// </summary>
     public class JobcityChatHub : Hub
     {
         RabbitMQConsumer _consumer;
@@ -22,11 +25,20 @@ namespace ChallengeBackend.Sources
             return base.OnConnected();
         }
 
-
+        /// <summary>
+        /// Broadcast a message to all clients.
+        /// </summary>
+        /// <param name="sendMessage"></param>
         private void OnBroadcast(string sendMessage)
         {
             Clients.All.SendMessage(sendMessage);
         }
+
+        /// <summary>
+        /// Broadcast a message. it evaluate for stock related commands.
+        /// </summary>
+        /// <param name="sender">who is sending the message</param>
+        /// <param name="msg">the message</param>
         public void Broadcast(string sender, string msg)
         {
             if (msg.Contains("/stock="))

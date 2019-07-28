@@ -5,6 +5,9 @@ using System.Web;
 
 namespace StockBot.Sources
 {
+    /// <summary>
+    /// Handles the csv logic that is implemented in this project
+    /// </summary>
     public class ChallengeCSVStockManager : CSVStockManager
     {
 
@@ -13,6 +16,10 @@ namespace StockBot.Sources
             CSVProvider = new StooqCSVProvider();
         }
 
+        /// <summary>
+        /// Process the stock code
+        /// </summary>
+        /// <param name="code">the code</param>
         public async void ProcessStockRequest(string code)
         {
             List<List<string>> values = await GetParsedCSV(code);
@@ -20,6 +27,11 @@ namespace StockBot.Sources
                 SendToRabbit(values[1][0], values[1][6]);
         }
 
+        /// <summary>
+        /// formats the message to be published in rabbitmq
+        /// </summary>
+        /// <param name="code">the stock code</param>
+        /// <param name="value">the value</param>
         void SendToRabbit(string code, string value)
         {
             RabbitMQPublisher publisher = new RabbitMQPublisher();

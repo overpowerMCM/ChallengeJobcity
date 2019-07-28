@@ -7,6 +7,9 @@ using System.Web;
 
 namespace StockBot.Sources
 {
+    /// <summary>
+    /// Default csv parser
+    /// </summary>
     public class DefaultCSVParser : ICSVParser
     {
         public List<List<string>> Parse(byte[] data)

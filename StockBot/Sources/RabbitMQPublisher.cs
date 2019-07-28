@@ -7,8 +7,16 @@ using System.Web;
 
 namespace StockBot.Sources
 {
+    /// <summary>
+    /// RabbitMQ publisher
+    /// </summary>
     public class RabbitMQPublisher
     {
+        /// <summary>
+        /// publish a message to rabbitMQ
+        /// </summary>
+        /// <param name="queue">queue name</param>
+        /// <param name="message">the message to be published</param>
         public void SendToQueue(string queue, string message)
         {
             var factory = new ConnectionFactory() { HostName = "localhost" };

@@ -12,33 +12,35 @@ using System.Web;
 
 namespace StockBot.Sources
 {
+    /// <summary>
+    /// Manages the stock provider and parser
+    /// </summary>
     public class CSVStockManager
     {
 
         protected ICSVProvider _csvProvider;
         protected ICSVParser _csvParser;
 
+        /// <summary>
+        /// the provider
+        /// </summary>
         public ICSVProvider CSVProvider { get => _csvProvider ?? (_csvProvider = new DefaultCSVProvider()); set => _csvProvider = value; }
+
+        /// <summary>
+        /// the parser
+        /// </summary>
         public ICSVParser CSVParser { get => _csvParser ?? (_csvParser = new DefaultCSVParser()); set => _csvParser = value; }
 
+        /// <summary>
+        /// retrives the parsed value collection of a given stock code
+        /// </summary>
+        /// <param name="code">the stock code</param>
+        /// <returns>a collection of a list o stock value elements</returns>
         public async Task<List<List<string>>> GetParsedCSV(string code )
         {
             byte[] data = await CSVProvider.GetStockData(code);
             return CSVParser.Parse(data);
         }
-/*
-        public async void ProcessStockRequest( string code )
-        {
-            byte[] data = await CSVProvider.GetStockData(code);
-            List<List<string>> values = CSVParser.Parse( data );
-            if( values != null && values.Count > 0)
-                SendToRabbit(values[1][0], values[1][6]);
-        }
 
-        void SendToRabbit(string code, string value)
-        {
-            RabbitMQPublisher publisher = new RabbitMQPublisher();
-            publisher.SendToQueue("cola1", string.Format("{0} quote is ${1} per share.", code, value));     
-        }*/
     }
 }
