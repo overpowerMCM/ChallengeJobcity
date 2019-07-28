@@ -8,12 +8,12 @@ namespace StockBot.Test.Sources
     class BotProcessHelperTest
     {
 
-        BotProcessHelper helper;
+        CSVStockManager helper;
 
         [SetUp]
         public void BeginTest()
         {
-            helper = new BotProcessHelper();
+            helper = new CSVStockManager();
         }
 
         [Test]
@@ -21,7 +21,7 @@ namespace StockBot.Test.Sources
         {
 
             //Action
-            List<List<string>> list = helper.ParseCSV(null);
+            List<List<string>> list = helper.CSVParser.Parse(null);
 
             //Assert
             Assert.IsNull(list);
@@ -31,7 +31,7 @@ namespace StockBot.Test.Sources
         public void ParseCVS_CSVByteArrayData_ShouldReturnAList()
         {
             //Action
-            List<List<string>> list = helper.ParseCSV( System.Text.Encoding.UTF8.GetBytes( "1,2,3,4,5,6" ) );
+            List<List<string>> list = helper.CSVParser.Parse( System.Text.Encoding.UTF8.GetBytes( "1,2,3,4,5,6" ) );
 
             //Assert
             Assert.IsNotNull(list);
@@ -41,7 +41,7 @@ namespace StockBot.Test.Sources
         [TestCase("1", 1)]
         public void ParseCVS_SingleLine_ElementCount( string csv, int count )
         {
-            List<List<string>> list = helper.ParseCSV(System.Text.Encoding.UTF8.GetBytes(csv));
+            List<List<string>> list = helper.CSVParser.Parse(System.Text.Encoding.UTF8.GetBytes(csv));
 
             Assert.AreEqual( list[0].Count, count  );
         }
@@ -50,7 +50,7 @@ namespace StockBot.Test.Sources
         [TestCase("1,1,1,1", 1)]
         public void ParseCSV_MultipleLines_Count(string csv, int count)
         {
-            List<List<string>> list = helper.ParseCSV(System.Text.Encoding.UTF8.GetBytes(csv));
+            List<List<string>> list = helper.CSVParser.Parse(System.Text.Encoding.UTF8.GetBytes(csv));
 
             Assert.AreEqual( list.Count, count );
         }

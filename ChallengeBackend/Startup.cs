@@ -10,7 +10,7 @@ namespace ChallengeBackend
     {
         public void Configuration(IAppBuilder app)
         {
-            MessengerRabbit v = MessengerRabbit.Instance;//.ConfigureRabbitMQ();
+            //RabbitMQConsummer v = RabbitMQConsummer.Instance;//.ConfigureRabbitMQ();
             app.MapSignalR();
             ConfigureAuth(app);
         }

@@ -3,3 +3,6 @@ packages/
 ChallengeBackend/bin/
 ChallengeBackend/obj/
 StockBot.Test/obj/
+StockBot.Test/bin/
+StockBot/bin/
+StockBot/obj/

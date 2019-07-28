@@ -21,14 +21,10 @@ namespace StockBot.Controllers
             var content = value.Content;
             string stock = content.ReadAsStringAsync().Result;
 
-            BotProcessHelper helper = new BotProcessHelper();
-            helper.CSVProvider = new JobcityCSVProvider();
+            ChallengeCSVStockManager helper = new ChallengeCSVStockManager();
 
             helper.ProcessStockRequest(stock);
 
         }
-
-
-
     }
 }

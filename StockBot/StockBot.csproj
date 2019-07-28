@@ -168,10 +168,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sources\BotProcessHelper.cs" />
+    <Compile Include="Sources\ChallengeCSVStockManager.cs" />
+    <Compile Include="Sources\CSVStockManager.cs" />
+    <Compile Include="Sources\DefaultCSVParser.cs" />
     <Compile Include="Sources\DefaultCSVProvider.cs" />
+    <Compile Include="Sources\ICSVParser.cs" />
     <Compile Include="Sources\ICSVProvider.cs" />
-    <Compile Include="Sources\JobcityCSVProvider.cs" />
+    <Compile Include="Sources\StooqCSVProvider.cs" />
+    <Compile Include="Sources\RabbitMQPublisher.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />

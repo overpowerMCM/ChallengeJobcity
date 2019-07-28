@@ -206,7 +206,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sources\JobcityChatHub.cs" />
     <Compile Include="Sources\MessageSender.cs" />
-    <Compile Include="Sources\MessengerRabbit.cs" />
+    <Compile Include="Sources\RabbitMQConsumer.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

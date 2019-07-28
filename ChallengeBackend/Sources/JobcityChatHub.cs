@@ -12,30 +12,29 @@ namespace ChallengeBackend.Sources
 {
     public class JobcityChatHub : Hub
     {
+        RabbitMQConsumer _consumer;
+
         public override Task OnConnected()
         {
-            MessengerRabbit.RegisterMessaging += OnBroadcast;
+            _consumer = new RabbitMQConsumer("cola1");
+            _consumer.RegisterMessaging += OnBroadcast;
+
             return base.OnConnected();
         }
 
-        public override Task OnDisconnected(bool stopCalled)
-        {
-            MessengerRabbit.RegisterMessaging -= OnBroadcast;
-            return base.OnDisconnected(stopCalled);
-        }
 
         private void OnBroadcast(string sendMessage)
         {
             Clients.All.SendMessage(sendMessage);
         }
-
         public void Broadcast(string sender, string msg)
         {
             if (msg.Contains("/stock="))
             {
                 // call bot
                 string[] stockSplit = msg.Split('=');
-                MessageSender.Instance.Post("https://localhost:44395/api/messages", stockSplit[1]);
+                if( stockSplit[1].Length > 0 )
+                    MessageSender.Instance.Post("https://localhost:44395/api/messages", stockSplit[1]);
             }
             else
             {

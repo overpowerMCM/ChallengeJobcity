@@ -7,7 +7,7 @@ using System.Web;
 
 namespace StockBot.Sources
 {
-    public class JobcityCSVProvider : ICSVProvider
+    public class StooqCSVProvider : ICSVProvider
     {
         public async Task<byte[]> GetStockData(string stockCode)
         {
