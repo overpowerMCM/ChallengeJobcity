@@ -1,4 +1,4 @@
-﻿
+﻿@using Microsoft.AspNet.Identity
 @{
     ViewBag.Title = "Index";
 }
@@ -27,9 +27,9 @@
     </div>
     <div class="panel-body">
         <div class="row">
-           <ul id="chatMessages"></ul>
+            <ul id="chatMessages"></ul>
         </div>
-
+        <input type="hidden" id="messageSenderName" value="@User.Identity.GetUserName()" />
     </div>
 </div>
 
@@ -40,13 +40,12 @@
     <script src="/signalr/hubs"></script>
 
     <script type="text/javascript">
-        $(function (){
+        $(function () {
             var connectionHub = $.connection.jobcityChatHub;
 
             // funtion to retrieve messages from other clients
-            connectionHub.client.sendMessage = function (message)
-            {
-                $("#chatMessages").append( "<li>" + message + "</li>");
+            connectionHub.client.sendMessage = function (message) {
+                $("#chatMessages").append("<li>" + message + "</li>");
             };
 
             // if connection was successfull add funcionality to send button
@@ -56,8 +55,11 @@
                     $("#btnSend").click(
                         function ()
                         {
+                            var sender = $("#messageSenderName").val();
                             var message = $("#inputMessage").val();
-                            connectionHub.server.processMessage(message);
+                            connectionHub.server.broadcast(sender, message);
+
+                            $("#inputMessage").val("").focus();
                         }
                     );
                 }

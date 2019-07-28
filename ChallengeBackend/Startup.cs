@@ -1,5 +1,7 @@
-﻿using Microsoft.Owin;
+﻿using ChallengeBackend.Sources;
+using Microsoft.Owin;
 using Owin;
+using RabbitMQ.Client;
 
 [assembly: OwinStartupAttribute(typeof(ChallengeBackend.Startup))]
 namespace ChallengeBackend
@@ -8,8 +10,10 @@ namespace ChallengeBackend
     {
         public void Configuration(IAppBuilder app)
         {
+            MessengerRabbit v = MessengerRabbit.Instance;//.ConfigureRabbitMQ();
             app.MapSignalR();
             ConfigureAuth(app);
         }
+
     }
 }
