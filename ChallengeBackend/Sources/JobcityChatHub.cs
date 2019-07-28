@@ -34,7 +34,8 @@ namespace ChallengeBackend.Sources
             if (msg.Contains("/stock="))
             {
                 // call bot
-                MessageSender.Instance.Post("https://localhost:44395/api/messages",  msg);
+                string[] stockSplit = msg.Split('=');
+                MessageSender.Instance.Post("https://localhost:44395/api/messages", stockSplit[1]);
             }
             else
             {
@@ -43,24 +44,6 @@ namespace ChallengeBackend.Sources
                 OnBroadcast(sendMessage);
             }
         }
-        /*
-        public void StartListeningMessages()
-        {
-            string cola = "cola1";
-            var factory = new ConnectionFactory() { HostName = "localhost" };
 
-            using ( var connection = factory.CreateConnection() )
-            {
-                using ( var channel = connection.CreateModel() )
-                {
-                    channel.QueueDeclare(cola, false, false, false, null);
-                    var consumer = new EventingBasicConsumer(channel);
-                    channel.BasicConsume(cola, true, consumer);
-                    
-
-                }
-            }
-
-        }*/
     }
 }

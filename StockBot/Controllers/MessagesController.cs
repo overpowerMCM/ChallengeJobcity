@@ -1,10 +1,13 @@
-﻿using RabbitMQ.Client;
+﻿using Microsoft.VisualBasic.FileIO;
+using RabbitMQ.Client;
+using StockBot.Sources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace StockBot.Controllers
@@ -16,8 +19,13 @@ namespace StockBot.Controllers
         {
 
             var content = value.Content;
-            string jsonContent = content.ReadAsStringAsync().Result;
+            string stock = content.ReadAsStringAsync().Result;
 
+            BotProcessHelper helper = new BotProcessHelper();
+
+            helper.ProcessStockRequest(stock);
+
+            /*
             var factory = new ConnectionFactory() { HostName = "localhost" };
             using ( var connection = factory.CreateConnection() )
             {
@@ -31,8 +39,10 @@ namespace StockBot.Controllers
 
                     channel.BasicPublish("", cola, null, body);
                 }
-            }
+            }*/
         }
+
+
 
     }
 }

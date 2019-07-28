@@ -26,13 +26,6 @@ namespace ChallengeBackend.Sources
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("text/plain"));
         }
 
-        /*
-        public void SetAddress(string url)
-        {
-            _client.BaseAddress = new Uri(url);
-        }
-        */
-
         public void Post(string url, string message)
         {
             var content = new StringContent(message, Encoding.UTF8, "text/plain");

@@ -8,7 +8,7 @@ using System.Web;
 
 namespace ChallengeBackend.Sources
 {
-    public class MessengerRabbit //: DefaultBasicConsumer
+    public class MessengerRabbit
     {
         private static MessengerRabbit _instance = null;
         public static MessengerRabbit Instance { get => _instance ?? (_instance = new MessengerRabbit()); }
