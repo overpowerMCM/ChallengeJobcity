@@ -22,24 +22,10 @@ namespace StockBot.Controllers
             string stock = content.ReadAsStringAsync().Result;
 
             BotProcessHelper helper = new BotProcessHelper();
+            helper.CSVProvider = new JobcityCSVProvider();
 
             helper.ProcessStockRequest(stock);
 
-            /*
-            var factory = new ConnectionFactory() { HostName = "localhost" };
-            using ( var connection = factory.CreateConnection() )
-            {
-                using ( var channel = connection.CreateModel() )
-                {
-
-                    string cola = "cola1";
-                    channel.QueueDeclare(cola, false, false, false, null);
-
-                    var body = Encoding.UTF8.GetBytes(jsonContent);
-
-                    channel.BasicPublish("", cola, null, body);
-                }
-            }*/
         }
 
 
