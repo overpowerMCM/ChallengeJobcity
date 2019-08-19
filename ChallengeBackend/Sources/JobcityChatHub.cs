@@ -19,7 +19,7 @@ namespace ChallengeBackend.Sources
 
         public override Task OnConnected()
         {
-            _consumer = new RabbitMQConsumer("cola1");
+            _consumer = new RabbitMQConsumer( Models.Helpers.DBContextHelper.Instance.Room.Title);
             _consumer.RegisterMessaging += OnBroadcast;
 
             return base.OnConnected();
@@ -50,8 +50,11 @@ namespace ChallengeBackend.Sources
             }
             else
             {
+                if (!string.IsNullOrEmpty(msg)) return;
                 string[] split = sender.Split('@');
                 string sendMessage = string.Format("{0}: {1}", split[0] ?? "Sender", msg);
+
+                ChallengeBackend.Models.Helpers.DBContextHelper.Instance.StoreMessage(msg);
                 OnBroadcast(sendMessage);
             }
         }

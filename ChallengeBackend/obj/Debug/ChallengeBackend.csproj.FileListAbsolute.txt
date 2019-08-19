@@ -119,3 +119,5 @@ D:\Desarrollo\Web\Challenge\ChallengeBackend\ChallengeBackend\obj\Debug\Challeng
 D:\Desarrollo\Web\Challenge\ChallengeBackend\ChallengeBackend\obj\Debug\ChallengeBackend.csproj.CopyComplete
 D:\Desarrollo\Web\Challenge\ChallengeBackend\ChallengeBackend\obj\Debug\ChallengeBackend.dll
 D:\Desarrollo\Web\Challenge\ChallengeBackend\ChallengeBackend\obj\Debug\ChallengeBackend.pdb
+D:\Desarrollo\Web\Challenge\ChallengeBackend\ChallengeBackend\obj\Debug\ChallengeBackend.Migrations.FirstMigration.resources
+D:\Desarrollo\Web\Challenge\ChallengeBackend\ChallengeBackend\obj\Debug\ChallengeBackend.csproj.GenerateResource.cache
